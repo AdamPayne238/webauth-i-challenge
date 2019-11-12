@@ -9,7 +9,7 @@ router.use('/auth', authRouter);
 router.use('/users', usersRouter);
 
 router.get('/', (req, res) => {
-    res.json({ api: "API!"});
+    res.json({ api: "API!", session: req.session});
 });
 
 router.post('/hash', (req, res) => {

@@ -11,6 +11,8 @@ router.post('/register', (req, res) => {
 
     Users.add(credentials)
     .then(saved => {
+        //session
+        req.session.username = saved.username;
         res.status(201).json(saved);
     })
     .catch(err => {
@@ -24,8 +26,9 @@ router.post('/login', (req, res) => {
     Users.findBy({ username })
       .first()
       .then(user => {
-        //checks if the password is valid
         if (user && bcrypt.compareSync(password, user.password)) {
+          //session
+          req.session.username = user.username;
           res.status(200).json({ message: `Welcome ${user.username}!` });
         } else {
           res.status(401).json({ message: 'Invalid Credentials' });
