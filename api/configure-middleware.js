@@ -22,7 +22,7 @@ const sessionConfiguration = {
         knex: knexConnection,
         clearInterval: 1000 * 60 * 10, // delete expired sessions every 10 minutes
         tablename: 'user_sessions',
-        sidfieldname: 'id',
+        sidfieldname: 'sid',
         createtable: true
     })
 }
